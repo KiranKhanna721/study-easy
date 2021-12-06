@@ -10,6 +10,7 @@ app.config.from_object(Config)
 client = ApiClient(base_url=app.config['API_URL'], api_key=app.config['API_KEY'])
 
 @app.route('/', methods=['GET', 'POST'])
+@app.route('/index', methods=['GET', 'POST'])
 def index():   
     return render_template('/index.html')
 @app.route('/texttopic', methods=['GET', 'POST'])
