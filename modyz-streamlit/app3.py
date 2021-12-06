@@ -24,5 +24,4 @@ def app():
             data_deep = deepfake(video)
             st.write("Fake ratio : ")
             st.write(data_deep['input.mp4'])
-            data_caption = caption(video)
-            st.write("Caption of Video: "+data_caption['caption'])
+  
