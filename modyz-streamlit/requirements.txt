@@ -1,0 +1,4 @@
+numpy==1.21.0
+streamlit==1.0.0
+modzy_sdk==0.5.7
+langdetect==1.0.9
