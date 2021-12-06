@@ -1,0 +1,6 @@
+requests==2.26.0
+WTForms==3.0.0
+langdetect==1.0.9
+Flask_WTF==1.0.0
+Flask==2.0.2
+modzy_sdk==0.5.7
