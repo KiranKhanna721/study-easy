@@ -22,7 +22,6 @@ def texttopic():
 		data_inputtext = input_text
 		data_texttopic = text_topic_modeling(input_text)
 		data_textsummary = textsummaries(input_text)
-		data_sentiment = sentimentanalysis(input_text)
 		data_name = named_entity_recognition(input_text)
 		entities = []
 		for word in data_name:
@@ -30,8 +29,21 @@ def texttopic():
 				entities.append(word)
 		data_name = entities
    
-		return render_template('/texttopic.html', form=form, data_lang=data_lang, data_inputtext = data_inputtext, data_textsummary = data_textsummary,data_texttopic=data_texttopic,data_name = entities,data_sentiment=data_sentiment)
-	return render_template('/texttopic.html', title='Text_Modeling', form=form,data_lang=None, data_inputtext = None, data_textsummary = None,data_texttopic=None,data_name=None,data_sentiment=None)
+		return render_template('/texttopic.html', form=form, data_lang=data_lang, data_inputtext = data_inputtext, data_textsummary = data_textsummary,data_texttopic=data_texttopic,data_name = entities,)
+	return render_template('/texttopic.html', title='Text_Modeling', form=form,data_lang=None, data_inputtext = None, data_textsummary = None,data_texttopic=None,data_name=None)
+
+@app.route('/sentimental', methods=['GET', 'POST'])
+def sentimental():
+	form = SentimentModeling()
+	if form.validate_on_submit():
+		lang = languageanalysis(form.input_text.data)
+		input_text = languageTranslation(lang,form.input_text.data)
+		data_lang = lang
+		data_inputtext = input_text
+		data_sentiment = sentimentanalysis(input_text)
+   
+		return render_template('/sentimental.html', form=form, data_lang=data_lang, data_inputtext = data_inputtext,data_sentiment=data_sentiment)
+	return render_template('/sentimental.html', title='Sentiment_Modeling', form=form,data_lang=None, data_inputtext = None,data_sentiment=None)
 
 
 def text_topic_modeling(input_text):
