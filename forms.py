@@ -11,3 +11,7 @@ class VideoAnalysisForm(FlaskForm):
 class TextTopicModeling(FlaskForm):          
     input_text= TextAreaField('Input Text', validators=[DataRequired()])
     submit = SubmitField('Analyze') 
+
+ class SentimentModeling(FlaskForm):          
+    input_text= TextAreaField('Input Text', validators=[DataRequired()])
+    submit = SubmitField('Analyze') 
