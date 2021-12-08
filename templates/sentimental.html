@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container py-3">
+    <div class="header p-3 pb-md-4 mx-auto text-center">
+      <h1 class="display-4 fw-normal">Sentiment Analysis</h1>
+      <p class="fs-5 text-muted">This model takes unstructured text as input in any language the converts it into english and returns the summary ,top 10 topics,name entity and sentiment analysis</p>
+    </div>
+    
+	<div class="p-3 pb-md-3 mx-auto col-8 text-center">
+		<form class="card p-2 " action="" method="post" novalidate>
+		 {{ form.hidden_tag() }}
+		  <div class="input-group">
+			<input type="text" class="form-control" name='input_text' id='input_text' placeholder="My Text">
+			<button type="submit" id='submit' name='submit' class="btn btn-secondary">Analyze</button>
+		  </div>
+		</form>
+	</div>
+
+
+{% if data_lang and data_inputtext and data_textsummary and data_texttopic %}
+	<div class="p-3 pb-md-3 mx-auto col-8 text-center">
+		<div class="col-md-5 col-lg-12 order-md-last mt-3">
+			<table class="table">
+			  <thead>
+				<tr>
+					<th scope="row">Language
+						<th scope="col">{{ data_lang}}</th>
+					</th>
+				</tr>
+				<tr>
+					<th scope="row">Text in English
+						<th scope="col">{{ data_inputtext}}</th>
+					</th>
+				</tr>
+				<tr>
+					<th scope="row">Sentiment Analysis
+						<th scope="col">
+							{% for s in data_sentiment['classPredictions'] %}
+							<tr class="{% if s['class'] == 'neutral' %}table-light{% elif s['class'] == 'positive' %}table-success{% elif s['class'] == 'negative' %}table-danger{%endif%}">
+								<th scope="row">{{s['class']}}</th>
+								<td>{{s['score']}}</td>
+							</tr>
+							{% endfor %}
+						</th>
+					</th>
+				</tr>
+			  </thead>
+			</table>
+		</div>
+	</div>	
+{%endif%}
+</div>
+{% endblock %}
