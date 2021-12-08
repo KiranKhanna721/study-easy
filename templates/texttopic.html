@@ -48,18 +48,6 @@
 						<th scope="col">{{data_name}}</th>
 					</th>
 				</tr>
-				<tr>
-					<th scope="row">Sentiment Analysis
-						<th scope="col">
-							{% for s in data_sentiment['classPredictions'] %}
-							<tr class="{% if s['class'] == 'neutral' %}table-light{% elif s['class'] == 'positive' %}table-success{% elif s['class'] == 'negative' %}table-danger{%endif%}">
-								<th scope="row">{{s['class']}}</th>
-								<td>{{s['score']}}</td>
-							</tr>
-							{% endfor %}
-						</th>
-					</th>
-				</tr>
 			  </thead>
 			</table>
 		</div>
